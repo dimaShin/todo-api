@@ -17,9 +17,8 @@
     "body-parser": "^1.16.0",
     "express": "^4.14.1",
     "pg": "^6.1.2",
-    "sequelize": "^3.30.2"
-  },
-  "devDependencies": {
+    "sequelize": "^3.30.2",
+
     "babel-core": "^6.22.1",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-async-to-generator": "^6.16.0",
@@ -30,5 +29,7 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0"
+  },
+  "devDependencies": {
   }
 }
