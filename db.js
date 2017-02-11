@@ -33,12 +33,17 @@ module.exports = class Db {
   }
 
   async initConnection({database, username, password, port, host, pool}) {
-    const seq = new Sequelize(database, username, password, {
-      host,
-      dialect: 'postgres',
-      port,
-      pool
-    });
+    let seq = null;
+    if (process.env.DATABASE_URL) {
+      seq = new Sequelize(process.env.DATABASE_URL, { pool , dialect: 'postgres' });
+    } else {
+      seq = new Sequelize(database, username, password, {
+        host,
+        dialect: 'postgres',
+        port,
+        pool
+      });
+    }
     try {
       await seq.authenticate();
 
