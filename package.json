@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "7.4.0"
+  },
   "scripts": {
+    "start": "NODE_ENV=development node server.js",
     "dev": "pm2 start --env development process.yml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
