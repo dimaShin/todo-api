@@ -1,0 +1,15 @@
+version: '2'
+# Start messaging broker
+
+services:
+  postgres:
+      image: postgres
+      container_name: TodoAPI_POSTRGESQL
+      environment:
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=123456
+          - PGDATA=/var/lib/volumes/pgdata
+      volumes:
+          - ./volumes:/var/lib/volumes
+      ports:
+          - "5433:5432"

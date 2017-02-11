@@ -1,0 +1,6 @@
+apps:
+  - script   : './server.js'
+    name     : 'Todo API'
+    watch    : true
+    env      : {'NODE_ENV': 'development'}
+    ignore_watch: ["volumes", "dist", "src", 'api/static', '.idea', '*.log']
