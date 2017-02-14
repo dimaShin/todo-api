@@ -40,10 +40,14 @@ app.use('/api/*', (req, res, next) => {
 
 app.get('/api/todo', async (req, res) => {
   try {
-    res.send( await db.Todo.findAll({ where: { deleted: true }}) );
+    res.send( await db.Todo.findAll({ where: { deleted: false }, order: [ ['done'], ['createdAt', 'DESC'] ]}) );
   } catch (err) {
     res.status(400).send(err);
   }
+});
+
+app.get('/api/me', async (req, res) => {
+  res.send( { loggedIn: true } );
 });
 
 app.post('/api/todo', async (req, res) => {
@@ -54,21 +58,11 @@ app.post('/api/todo', async (req, res) => {
   }
 });
 
-app.patch('/api/todo/:id/done', async (req, res) => {
+app.patch('/api/todo/:id/toggle', async (req, res) => {
   try {
     const todo = await db.Todo.findById(req.params.id);
-    todo.set('done', true);
-    res.send( await todo.save() )
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-
-app.patch('/api/todo/:id/undone', async (req, res) => {
-  try {
-    const todo = await db.Todo.findById(req.params.id);
-    todo.set('done', false);
-    res.send( await todo.save() )
+    todo.set('done', !todo.get('done'));
+    res.send( await todo.save() );
   } catch (err) {
     res.status(400).send(err);
   }
